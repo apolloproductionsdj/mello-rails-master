@@ -42,18 +42,52 @@ function displayMessage(message, type) {
   $message.text(message).attr('class', type);
 }
 
+function handleSignupResponse(status) {
+  if (status === 'success') {
+    displayMessage('Registered successfully! You may sign in.', 'success');
+    setAuth('login');
+  } else {
+    displayMessage(
+      'Something went wrong. A user with this account may already exist.', 
+      'danger'
+    );
+  }
+}
+
+function handleLoginResponse(data, status, jqXHR) {
+  if (status === 'success') {
+    let jwt = jqXHR.getResponseHeader('authorization');
+    let user = JSON.stringify(data);
+
+    localStorage.setItem('authorization', jwt);
+    localStorage.setItem('user', user);
+  } else {
+    displayMessage('Invalid email or password.', 'danger');
+  }
+}
+
 function authenticateUser(email, password) {
   $.ajax({
     url: '/' + authSetting,
     data: {
       user: {
-        email: email,
-        password: password
+        email, password
       }
     },
     method: 'POST'
-  }).then(function(data) {
-    console.log(data);
+  }).then(function(data, status, jqXHR) {
+    if (authSetting === 'signup') {
+      handleSignupResponse(status);
+    } else {
+      handleLoginResponse(data, status, jqXHR);
+    }
+  })
+  .catch(function(err) {
+    if (authSetting === 'signup') {
+      handleSignupResponse(err.statusText);
+    } else {
+      handleLoginResponse(err.statusText);
+    }
   });
 }
 
