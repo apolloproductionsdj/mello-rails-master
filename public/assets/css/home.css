@@ -27,7 +27,7 @@ header h1 {
 
 .button-container {
   margin: 0 auto;
-  margi-bottom: -15px;
+  margin-bottom: -15px;
   max-width: 430px;
   display: flex;
   justify-content: space-between;
@@ -69,7 +69,6 @@ header h1 {
   opacity: 1;
   cursor: pointer;
 }
-
 
 .auth-container form label {
   display: block;
