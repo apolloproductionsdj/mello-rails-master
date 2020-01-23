@@ -1,24 +1,7 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+git@github.com:apolloproductionsdj/mello-rails-master.git
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Project: Mello
+Mello is a Trello Clone app that allows for users to sign in/sign up in order to create boards that will hold lists and cards of items to do. The board allows for drag and drop capabilities in order to manipulate the board without having to do a page refresh. Contributors can be a part of the board in order to make edits and add cards and lists as well. 
